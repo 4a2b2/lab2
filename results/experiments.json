@@ -1,0 +1,573 @@
+{
+  "q1": {
+    "maze_seeds": {
+      "random_21x21": 42
+    },
+    "runs": [
+      {
+        "maze": "given_5x5",
+        "heuristic": "h=0(Dijkstra)",
+        "expanded": 16,
+        "generated": 18,
+        "max_open": 3,
+        "path_steps": 7,
+        "optimal_steps": 7
+      },
+      {
+        "maze": "given_5x5",
+        "heuristic": "曼哈顿",
+        "expanded": 13,
+        "generated": 16,
+        "max_open": 3,
+        "path_steps": 7,
+        "optimal_steps": 7
+      },
+      {
+        "maze": "given_5x5",
+        "heuristic": "曼哈顿+high_g",
+        "expanded": 13,
+        "generated": 17,
+        "max_open": 4,
+        "path_steps": 7,
+        "optimal_steps": 7
+      },
+      {
+        "maze": "random_21x21",
+        "heuristic": "h=0(Dijkstra)",
+        "expanded": 283,
+        "generated": 285,
+        "max_open": 22,
+        "path_steps": 40,
+        "optimal_steps": 40
+      },
+      {
+        "maze": "random_21x21",
+        "heuristic": "曼哈顿",
+        "expanded": 105,
+        "generated": 128,
+        "max_open": 26,
+        "path_steps": 40,
+        "optimal_steps": 40
+      },
+      {
+        "maze": "random_21x21",
+        "heuristic": "曼哈顿+high_g",
+        "expanded": 70,
+        "generated": 116,
+        "max_open": 46,
+        "path_steps": 40,
+        "optimal_steps": 40
+      },
+      {
+        "maze": "serpentine_15x15",
+        "heuristic": "h=0(Dijkstra)",
+        "expanded": 126,
+        "generated": 127,
+        "max_open": 1,
+        "path_steps": 126,
+        "optimal_steps": 126
+      },
+      {
+        "maze": "serpentine_15x15",
+        "heuristic": "曼哈顿",
+        "expanded": 126,
+        "generated": 127,
+        "max_open": 1,
+        "path_steps": 126,
+        "optimal_steps": 126
+      },
+      {
+        "maze": "serpentine_15x15",
+        "heuristic": "曼哈顿+high_g",
+        "expanded": 126,
+        "generated": 127,
+        "max_open": 1,
+        "path_steps": 126,
+        "optimal_steps": 126
+      }
+    ],
+    "multi_seed": [
+      {
+        "maze": "random_21x21#42",
+        "heuristic": "h=0(Dijkstra)",
+        "expanded": 283,
+        "path_steps": 40
+      },
+      {
+        "maze": "random_21x21#42",
+        "heuristic": "曼哈顿",
+        "expanded": 105,
+        "path_steps": 40
+      },
+      {
+        "maze": "random_21x21#42",
+        "heuristic": "曼哈顿+high_g",
+        "expanded": 70,
+        "path_steps": 40
+      },
+      {
+        "maze": "random_21x21#47",
+        "heuristic": "h=0(Dijkstra)",
+        "expanded": 319,
+        "path_steps": 40
+      },
+      {
+        "maze": "random_21x21#47",
+        "heuristic": "曼哈顿",
+        "expanded": 188,
+        "path_steps": 40
+      },
+      {
+        "maze": "random_21x21#47",
+        "heuristic": "曼哈顿+high_g",
+        "expanded": 83,
+        "path_steps": 40
+      },
+      {
+        "maze": "random_21x21#49",
+        "heuristic": "h=0(Dijkstra)",
+        "expanded": 293,
+        "path_steps": 40
+      },
+      {
+        "maze": "random_21x21#49",
+        "heuristic": "曼哈顿",
+        "expanded": 96,
+        "path_steps": 40
+      },
+      {
+        "maze": "random_21x21#49",
+        "heuristic": "曼哈顿+high_g",
+        "expanded": 51,
+        "path_steps": 40
+      },
+      {
+        "maze": "random_21x21#50",
+        "heuristic": "h=0(Dijkstra)",
+        "expanded": 320,
+        "path_steps": 40
+      },
+      {
+        "maze": "random_21x21#50",
+        "heuristic": "曼哈顿",
+        "expanded": 188,
+        "path_steps": 40
+      },
+      {
+        "maze": "random_21x21#50",
+        "heuristic": "曼哈顿+high_g",
+        "expanded": 53,
+        "path_steps": 40
+      },
+      {
+        "maze": "random_21x21#52",
+        "heuristic": "h=0(Dijkstra)",
+        "expanded": 294,
+        "path_steps": 40
+      },
+      {
+        "maze": "random_21x21#52",
+        "heuristic": "曼哈顿",
+        "expanded": 157,
+        "path_steps": 40
+      },
+      {
+        "maze": "random_21x21#52",
+        "heuristic": "曼哈顿+high_g",
+        "expanded": 59,
+        "path_steps": 40
+      }
+    ]
+  },
+  "q2": {
+    "given": {
+      "runs": [
+        {
+          "heuristic": "zero",
+          "cost": 7,
+          "expanded": 14,
+          "generated": 24
+        },
+        {
+          "heuristic": "manhattan",
+          "cost": 7,
+          "expanded": 10,
+          "generated": 19
+        },
+        {
+          "heuristic": "adjusted",
+          "cost": 7,
+          "expanded": 10,
+          "generated": 19
+        }
+      ],
+      "accumulation": [
+        {
+          "step": 0,
+          "pos": [
+            0,
+            0
+          ],
+          "entered_cost": 0,
+          "g": 0,
+          "h_adj": 7,
+          "f_adj": 7,
+          "h_man": 8,
+          "f_man": 8
+        },
+        {
+          "step": 1,
+          "pos": [
+            1,
+            0
+          ],
+          "entered_cost": 1,
+          "g": 1,
+          "h_adj": 6,
+          "f_adj": 7,
+          "h_man": 7,
+          "f_man": 8
+        },
+        {
+          "step": 2,
+          "pos": [
+            2,
+            0
+          ],
+          "entered_cost": 1,
+          "g": 2,
+          "h_adj": 5,
+          "f_adj": 7,
+          "h_man": 6,
+          "f_man": 8
+        },
+        {
+          "step": 3,
+          "pos": [
+            3,
+            0
+          ],
+          "entered_cost": 1,
+          "g": 3,
+          "h_adj": 4,
+          "f_adj": 7,
+          "h_man": 5,
+          "f_man": 8
+        },
+        {
+          "step": 4,
+          "pos": [
+            3,
+            1
+          ],
+          "entered_cost": 1,
+          "g": 4,
+          "h_adj": 3,
+          "f_adj": 7,
+          "h_man": 4,
+          "f_man": 8
+        },
+        {
+          "step": 5,
+          "pos": [
+            3,
+            2
+          ],
+          "entered_cost": 1,
+          "g": 5,
+          "h_adj": 2,
+          "f_adj": 7,
+          "h_man": 3,
+          "f_man": 8
+        },
+        {
+          "step": 6,
+          "pos": [
+            4,
+            2
+          ],
+          "entered_cost": 1,
+          "g": 6,
+          "h_adj": 1,
+          "f_adj": 7,
+          "h_man": 2,
+          "f_man": 8
+        },
+        {
+          "step": 7,
+          "pos": [
+            4,
+            3
+          ],
+          "entered_cost": 1,
+          "g": 7,
+          "h_adj": 0,
+          "f_adj": 7,
+          "h_man": 1,
+          "f_man": 8
+        },
+        {
+          "step": 8,
+          "pos": [
+            4,
+            4
+          ],
+          "entered_cost": 0,
+          "g": 7,
+          "h_adj": 0,
+          "f_adj": 7,
+          "h_man": 0,
+          "f_man": 7
+        }
+      ]
+    },
+    "swamp_15x15": {
+      "runs": [
+        {
+          "heuristic": "zero",
+          "cost": 39,
+          "expanded": 224,
+          "generated": 225
+        },
+        {
+          "heuristic": "manhattan",
+          "cost": 39,
+          "expanded": 156,
+          "generated": 204
+        },
+        {
+          "heuristic": "adjusted",
+          "cost": 39,
+          "expanded": 162,
+          "generated": 211
+        }
+      ]
+    }
+  },
+  "q3": {
+    "sample": {
+      "value": 5,
+      "minimax": {
+        "visited": 15,
+        "leaf_evals": 8,
+        "cutoffs": 0
+      },
+      "alphabeta": {
+        "visited": 14,
+        "leaf_evals": 7,
+        "cutoffs": 1
+      }
+    },
+    "random_tree": {
+      "params": {
+        "depth": 8,
+        "branching": 3,
+        "seed": 5,
+        "leaves": 6561
+      },
+      "minimax": {
+        "visited": 9841,
+        "leaf_evals": 6561,
+        "cutoffs": 0
+      },
+      "alphabeta": {
+        "natural": {
+          "visited": 2124,
+          "leaf_evals": 1183,
+          "cutoffs": 440
+        },
+        "best": {
+          "visited": 393,
+          "leaf_evals": 161,
+          "cutoffs": 152
+        },
+        "worst": {
+          "visited": 7881,
+          "leaf_evals": 5057,
+          "cutoffs": 529
+        },
+        "random": {
+          "leaf_evals": 1221.05,
+          "min": 953,
+          "max": 1485
+        }
+      }
+    }
+  },
+  "q4": {
+    "labels": [
+      "A",
+      "B",
+      "T1",
+      "T2",
+      "T3",
+      "T4"
+    ],
+    "matrix": [
+      [
+        0,
+        12,
+        10,
+        4,
+        8,
+        8
+      ],
+      [
+        12,
+        0,
+        8,
+        8,
+        4,
+        10
+      ],
+      [
+        10,
+        8,
+        0,
+        6,
+        6,
+        12
+      ],
+      [
+        4,
+        8,
+        6,
+        0,
+        6,
+        6
+      ],
+      [
+        8,
+        4,
+        6,
+        6,
+        0,
+        6
+      ],
+      [
+        8,
+        10,
+        12,
+        6,
+        6,
+        0
+      ]
+    ],
+    "search": [
+      {
+        "H": 2,
+        "method": "minimax",
+        "best_target": "T2",
+        "best_value": -1,
+        "expanded": 4,
+        "evaluated": 12,
+        "cutoffs": 0,
+        "match_expected": true
+      },
+      {
+        "H": 2,
+        "method": "minimax+memo",
+        "best_target": "T2",
+        "best_value": -1,
+        "expanded": 4,
+        "evaluated": 12,
+        "cutoffs": 0,
+        "match_expected": true
+      },
+      {
+        "H": 2,
+        "method": "alphabeta",
+        "best_target": "T2",
+        "best_value": -1,
+        "expanded": 4,
+        "evaluated": 8,
+        "cutoffs": 2,
+        "match_expected": true
+      },
+      {
+        "H": 2,
+        "method": "alphabeta+smart_order",
+        "best_target": "T2",
+        "best_value": -1,
+        "expanded": 4,
+        "evaluated": 11,
+        "cutoffs": 1,
+        "match_expected": true
+      },
+      {
+        "H": 2,
+        "method": "alphabeta+reverse_order",
+        "best_target": "T2",
+        "best_value": -1,
+        "expanded": 4,
+        "evaluated": 8,
+        "cutoffs": 2,
+        "match_expected": true
+      },
+      {
+        "H": 4,
+        "method": "minimax",
+        "best_target": "T3",
+        "best_value": 3,
+        "expanded": 40,
+        "evaluated": 24,
+        "cutoffs": 0,
+        "match_expected": true
+      },
+      {
+        "H": 4,
+        "method": "minimax+memo",
+        "best_target": "T3",
+        "best_value": 3,
+        "expanded": 40,
+        "evaluated": 24,
+        "cutoffs": 0,
+        "match_expected": true
+      },
+      {
+        "H": 4,
+        "method": "alphabeta",
+        "best_target": "T3",
+        "best_value": 3,
+        "expanded": 30,
+        "evaluated": 16,
+        "cutoffs": 5,
+        "match_expected": true
+      },
+      {
+        "H": 4,
+        "method": "alphabeta+smart_order",
+        "best_target": "T3",
+        "best_value": 3,
+        "expanded": 34,
+        "evaluated": 20,
+        "cutoffs": 1,
+        "match_expected": true
+      },
+      {
+        "H": 4,
+        "method": "alphabeta+reverse_order",
+        "best_target": "T3",
+        "best_value": 3,
+        "expanded": 29,
+        "evaluated": 15,
+        "cutoffs": 6,
+        "match_expected": true
+      }
+    ],
+    "first_moves": {
+      "H=2": {
+        "T1": -4,
+        "T2": -1,
+        "T3": -2,
+        "T4": -4
+      },
+      "H=4": {
+        "T1": -5,
+        "T2": 1,
+        "T3": 3,
+        "T4": -7
+      }
+    }
+  }
+}

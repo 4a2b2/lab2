@@ -368,23 +368,27 @@
       "minimax": {
         "visited": 9841,
         "leaf_evals": 6561,
-        "cutoffs": 0
+        "cutoffs": 0,
+        "time_ms": 2.13
       },
       "alphabeta": {
         "natural": {
           "visited": 2124,
           "leaf_evals": 1183,
-          "cutoffs": 440
+          "cutoffs": 440,
+          "time_ms": 1.08
         },
         "best": {
           "visited": 393,
           "leaf_evals": 161,
-          "cutoffs": 152
+          "cutoffs": 152,
+          "time_ms": 4.7
         },
         "worst": {
           "visited": 7881,
           "leaf_evals": 5057,
-          "cutoffs": 529
+          "cutoffs": 529,
+          "time_ms": 8.21
         },
         "random": {
           "leaf_evals": 1221.05,
@@ -490,8 +494,8 @@
         "best_target": "T2",
         "best_value": -1,
         "expanded": 4,
-        "evaluated": 11,
-        "cutoffs": 1,
+        "evaluated": 8,
+        "cutoffs": 2,
         "match_expected": true
       },
       {
@@ -500,8 +504,8 @@
         "best_target": "T2",
         "best_value": -1,
         "expanded": 4,
-        "evaluated": 8,
-        "cutoffs": 2,
+        "evaluated": 11,
+        "cutoffs": 1,
         "match_expected": true
       },
       {
@@ -539,9 +543,9 @@
         "method": "alphabeta+smart_order",
         "best_target": "T3",
         "best_value": 3,
-        "expanded": 34,
-        "evaluated": 20,
-        "cutoffs": 1,
+        "expanded": 28,
+        "evaluated": 14,
+        "cutoffs": 7,
         "match_expected": true
       },
       {
@@ -549,9 +553,9 @@
         "method": "alphabeta+reverse_order",
         "best_target": "T3",
         "best_value": 3,
-        "expanded": 29,
-        "evaluated": 15,
-        "cutoffs": 6,
+        "expanded": 33,
+        "evaluated": 19,
+        "cutoffs": 2,
         "match_expected": true
       }
     ],

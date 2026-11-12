@@ -11,6 +11,7 @@
 import json
 import random
 import sys
+import time
 from collections import deque
 from pathlib import Path
 
@@ -30,6 +31,8 @@ results = {}
 # ------------------------------------------------------------------
 # 实验地图构造
 # ------------------------------------------------------------------
+
+# 检查迷宫是否可解（BFS）
 def bfs_solvable(grid, start, goal):
     rows, cols = len(grid), len(grid[0])
     seen, dq = {start}, deque([start])
@@ -107,7 +110,7 @@ def exp_q1():
                         ("曼哈顿+high_g", dict(heuristic="manhattan",
                                                tie_break="high_g"))):
             path, st = solve_maze(s, g, grid, **kw)
-            steps = len(path) - 1
+            steps = len(path) - 1 if path else -1
             if tag.startswith("h=0"):
                 base = steps
             runs.append({"maze": name, "heuristic": tag,
@@ -128,7 +131,7 @@ def exp_q1():
             path, st = solve_maze((0, 0), (20, 20), grid, **kw)
             multi.append({"maze": "random_21x21#%d" % used,
                           "heuristic": tag, "expanded": st["expanded"],
-                          "path_steps": len(path) - 1})
+                          "path_steps": len(path) - 1 if path else -1})
     results["q1"] = {"maze_seeds": {"random_21x21": used_seed},
                      "runs": runs, "multi_seed": multi}
     print("[q1] 启发函数对照：")
@@ -223,8 +226,10 @@ def exp_q3():
     rng = random.Random(5)
     root = build_random_tree(8, 3, rng)
     st = q3.SearchStats()
+    t0 = time.perf_counter()
     q3.minimax(root, True, st)
     mm = st.as_dict()
+    mm["time_ms"] = round((time.perf_counter() - t0) * 1000, 2)
 
     memo = {}
 
@@ -259,9 +264,14 @@ def exp_q3():
 
     def run_ab(mode):
         st = q3.SearchStats()
-        v = q3.alphabeta_ordered(root, True, order_key(mode), st)
+        t0 = time.perf_counter()
+        v = q3.alphabeta_ordered(root, True, stats=st,
+                                 order_key=order_key(mode))
+        ms = (time.perf_counter() - t0) * 1000
         assert v == mm_v, "各访问顺序结果必须一致"
-        return st.as_dict()
+        d = st.as_dict()
+        d["time_ms"] = round(ms, 2)
+        return d
 
     mm_v = q3.minimax(root, True, q3.SearchStats())
 

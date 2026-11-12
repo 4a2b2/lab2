@@ -14,10 +14,7 @@
 经过其他宝藏不自动收集；已获取宝藏位置仍可通行（代价 1）；
 对方玩家不阻挡寻路 —— 以上规则均已体现在距离矩阵的复用中。
 """
-import json
-import sys
 from dataclasses import dataclass, replace
-from functools import lru_cache
 
 from astar import a_star
 from grid_utils import DIRS, cell_weight
@@ -71,6 +68,8 @@ def distance_matrix(grid):
                 continue
             h = lambda p: manhattan(p, POINTS[dst])
             path, _ = a_star(POINTS[src], POINTS[dst], neighbors, h)
+            if not path:
+                raise ValueError("关键点 %s 与 %s 之间不可达" % (src, dst))
             cost = sum(cell_weight(grid[r][c]) for r, c in path[1:])
             dist[(src, dst)] = cost
     return dist
@@ -115,41 +114,33 @@ class GameStats:
                 "cutoffs": self.cutoffs}
 
 
-def order_moves(moves, order):
-    """动作排序策略（对照实验用）。
-    given   : 按宝藏名字典序（即题目给定顺序）；
-    smart   : MAX 按收益降序、MIN 按收益升序（接近最优排序，剪枝最多）；
-    reverse : 与 smart 相反（最坏排序，剪枝最少）。"""
-    if order == "given":
-        return moves
-    if order == "smart":
-        return moves  # 在搜索函数内按玩家方向处理
-    if order == "reverse":
-        return moves
-    raise ValueError(order)
-
-
 def game_search(state, depth, dist, stats, use_ab=False, order="given",
                 memo=None, alpha=float("-inf"), beta=float("inf")):
-    """返回当前玩家视角下可取得的最优 U 值（A 最大化、B 最小化）。"""
+    """返回当前玩家视角下可取得的最优 U 值（A 最大化、B 最小化）。
+
+    记忆化：键为 (完整状态, 深度)。完整状态包含累计得分，避免不同得分
+    路径共用缓存；由于 Alpha-Beta 写入缓存的可能只是剪枝边界而非精确值，
+    memo 与 use_ab 不可同时启用。
+    """
+    if memo is not None and use_ab:
+        raise ValueError("memo 与 Alpha-Beta 不能同时启用：缓存值可能只是边界")
     if depth == 0 or not state.remaining:
         stats.evaluated += 1
         return state.score_a - state.score_b
 
     key = None
     if memo is not None:
-        key = (state.pos_a, state.pos_b, state.remaining, state.player,
-               depth)
+        key = (state, depth)
         if key in memo:
             return memo[key]
 
     stats.expanded += 1
     maximizing = state.player == "A"
     moves = legal_moves(state, dist)
-    if order == "smart":                     # 静态启发排序：按本步收益
-        moves.sort(key=lambda m: -m[1] if maximizing else m[1])
-    elif order == "reverse":
-        moves.sort(key=lambda m: m[1] if maximizing else -m[1])
+    if order == "smart":        # 收益排序：双方都先试“对自己最有利”的一步
+        moves.sort(key=lambda m: -m[1])
+    elif order == "reverse":    # 反向排序：先试最差动作
+        moves.sort(key=lambda m: m[1])
 
     if maximizing:
         best = float("-inf")
@@ -183,7 +174,10 @@ def best_first_move(depth, use_ab=False, order="given", memo=False):
     (best_target, best_value, stats)。
 
     根节点逐个尝试 A 的首步；use_ab=True 时向后续兄弟子树传递
-    当前最优值 alpha（标准根节点窗口收缩），使根层也能剪枝。"""
+    当前最优值 alpha（标准根节点窗口收缩），使根层也能剪枝。
+
+    注意：order 只作用于搜索树内部节点；根层始终按宝藏名字序
+    遍历全部候选，以便同时给出 4 个首步的收益（表 6）。"""
     dist = distance_matrix(MAP)
     root = GameState("A", "B", frozenset(VALUES), 0, 0, "A")
     stats = GameStats()

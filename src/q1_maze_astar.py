@@ -37,7 +37,7 @@ def make_neighbors(grid):
 def solve_maze(start, goal, grid, heuristic="manhattan", tie_break="fifo"):
     """求解迷宫最短路径。
 
-    返回 (path, stats)；path 为坐标列表（无解时为 None）。
+    返回 (path, stats)；path 为坐标列表，无解时为 []（符合题目输出要求）。
     heuristic: "manhattan"（曼哈顿距离）| "zero"（h=0，即 Dijkstra）
     tie_break: "fifo" | "high_g"
     """
@@ -48,7 +48,8 @@ def solve_maze(start, goal, grid, heuristic="manhattan", tie_break="fifo"):
         h = lambda p: 0
     else:
         raise ValueError("未知启发函数: %s" % heuristic)
-    return a_star(start, goal, neighbors, h, tie_break)
+    path, stats = a_star(start, goal, neighbors, h, tie_break)
+    return (path if path is not None else []), stats
 
 
 # ---------------- 测试用例（来自实验要求文档） ----------------
@@ -64,7 +65,7 @@ GRID = [
 if __name__ == "__main__":
     path, stats = solve_maze(START, GOAL, GRID)
     print("题目一：迷宫寻路")
-    print("最短路径:", path if path is not None else [])
+    print("最短路径:", path)
     print("路径步数:", len(path) - 1 if path else "无解")
     print("A*(曼哈顿) 统计:", stats)
 

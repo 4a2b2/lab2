@@ -11,7 +11,6 @@
 - leaf_evals：叶子得分读取次数（搜索开销的主要度量）；
 - cutoffs   ：发生剪枝的次数。
 """
-import random
 
 
 class TreeNode:
@@ -92,10 +91,12 @@ def alphabeta(node, maximizing, alpha=float("-inf"), beta=float("inf"),
     return best
 
 
-def alphabeta_ordered(node, maximizing, order_key=None, stats=None,
-                      alpha=float("-inf"), beta=float("inf")):
+def alphabeta_ordered(node, maximizing, alpha=float("-inf"),
+                      beta=float("inf"), stats=None, order_key=None):
     """带子节点排序的 Alpha-Beta（用于访问顺序对照实验）。
 
+    参数顺序与 alphabeta 一致（node, maximizing, alpha, beta, stats），
+    仅在其后追加 order_key。
     order_key(children, maximizing) -> 排序后的子节点列表。
     """
     if stats is None:
@@ -109,8 +110,8 @@ def alphabeta_ordered(node, maximizing, order_key=None, stats=None,
     if maximizing:
         best = float("-inf")
         for i, child in enumerate(children):
-            best = max(best, alphabeta_ordered(child, False, order_key,
-                                               stats, alpha, beta))
+            best = max(best, alphabeta_ordered(child, False, alpha, beta,
+                                               stats, order_key))
             alpha = max(alpha, best)
             if alpha >= beta:
                 if i < len(children) - 1:
@@ -119,23 +120,14 @@ def alphabeta_ordered(node, maximizing, order_key=None, stats=None,
         return best
     best = float("inf")
     for i, child in enumerate(children):
-        best = min(best, alphabeta_ordered(child, True, order_key,
-                                           stats, alpha, beta))
+        best = min(best, alphabeta_ordered(child, True, alpha, beta,
+                                           stats, order_key))
         beta = min(beta, best)
         if beta <= alpha:
             if i < len(children) - 1:
                 stats.cutoffs += 1
             break
     return best
-
-
-def true_values(node, maximizing):
-    """用一次独立的 Minimax 计算各子树真实价值（仅供排序实验使用，
-    其开销不计入被测算法）。"""
-    if is_leaf(node):
-        return node.value
-    vals = [true_values(c, not maximizing) for c in node.children]
-    return max(vals) if maximizing else min(vals)
 
 
 # ----------------------- 测试树（来自要求文档） -----------------------
